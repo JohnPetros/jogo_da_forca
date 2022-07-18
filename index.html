@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CBF Cursos - JavaScript</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
+  </head>
+  <body onload="changeThemeTitle(1)">
+    <header>
+      <h1>Jogo da Forca</h1>
+    </header>
+
+    <div id="dvTheme">
+        <h2>Tema:</h2>
+        <span id="theme"></span>
+        <button id="chooseTheme" onclick="openModal(1)">Escolher Tema</button>
+    </div>
+
+    <main id="container">
+      <section id="game">
+          <div id="dvMenu" class="dvDisplay">
+            <button id="newWord" onclick="start()">Nova Palavra</button>
+          </div>
+          <div id="dvLetters" class="dvDisplay">
+            <input type="text" id="letter0" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter1" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter2" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter3" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter4" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter5" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter6" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter7" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter8" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter9" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter10" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter11" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter12" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter13" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter14" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter15" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter16" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter17" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter18" class="letter" maxlength="1" readonly/>
+            <input type="text" id="letter19" class="letter" maxlength="1" readonly/>
+          </div>
+          <div id="dvPlayer" class="dvDisplay">
+            <div id="controls">
+              <input type="text" id="playLetter" class="playLetter" maxlength="1" />
+              <button id="play" onclick="play()">Jogar</button>
+              <div id="dvmsg"></div>
+              <div id="typedLetters"></div>
+            </div>
+          </div>
+          <div id="keyboard">
+            <div id="row1">
+                <button class="key" data-key="81" onclick="playBoard(event)">Q</button>
+                <button class="key" data-key="69" onclick="playBoard(event)">E</button>
+                <button class="key" data-key="82" onclick="playBoard(event)">R</button>
+                <button class="key" data-key="87" onclick="playBoard(event)">W</button>
+                <button class="key" data-key="84" onclick="playBoard(event)">T</button>
+                <button class="key" data-key="89" onclick="playBoard(event)">Y</button>
+                <button class="key" data-key="85" onclick="playBoard(event)">U</button>
+                <button class="key" data-key="73" onclick="playBoard(event)">I</button>
+                <button class="key" data-key="79" onclick="playBoard(event)">O</button>
+                <button class="key" data-key="80" onclick="playBoard(event)">P</button> <!--Linha 1-->
+            </div>
+            <div id="row2">
+                <button class="key" data-key="65" onclick="playBoard(event)">A</button>
+                <button class="key" data-key="83" onclick="playBoard(event)">S</button>
+                <button class="key" data-key="68" onclick="playBoard(event)">D</button>
+                <button class="key" data-key="70" onclick="playBoard(event)">F</button>
+                <button class="key" data-key="71" onclick="playBoard(event)">G</button>
+                <button class="key" data-key="72" onclick="playBoard(event)">H</button>
+                <button class="key" data-key="74" onclick="playBoard(event)">J</button>
+                <button class="key" data-key="75" onclick="playBoard(event)">K</button>
+                <button class="key" data-key="76" onclick="playBoard(event)">L</button> <!--Linha 2-->
+            </div>
+            <div id="row3">
+                <button class="key" data-key="90" onclick="playBoard(event)">Z</button>
+                <button class="key" data-key="87" onclick="playBoard(event)">X</button>
+                <button class="key" data-key="67" onclick="playBoard(event)">C</button>
+                <button class="key" data-key="86" onclick="playBoard(event)">V</button>
+                <button class="key" data-key="66" onclick="playBoard(event)">B</button>
+                <button class="key" data-key="78" onclick="playBoard(event)">N</button>
+                <button class="key" data-key="77" onclick="playBoard(event)">M</button>
+            </div>
+          </div>
+      </section>
+      <section id="dvHangman">
+        <img id="gallows" src="imgs/forca.png" alt="">
+        <!-- <img class="hangmanPart" id="head" src="imgs/cabeca1.png" alt="" />
+        <img id="body" src="imgs/corpo.png" alt="" />
+        <img class="hangmanPart" id="leftHand" src="imgs/bracoE.png" alt="" />
+        <img class="hangmanPart" id="rightHand" src="imgs/bracoD.png" alt="" />
+        <img class="hangmanPart" id="leftFoot" src="imgs/pernaE.png" alt="" />
+        <img class="hangmanPart" id="rightFoot" src="imgs/pernaD.png" alt="" /> -->
+
+
+        <div id="hangman">
+            <img class="hangmanPart" id="head" src="imgs/cabeca1.png" alt="" />
+            <!-- <img id="body" src="imgs/corpo.png" alt="" /> -->
+            <img class="hangmanPart" id="leftHand" src="imgs/bracoE.png" alt="" />
+            <img class="hangmanPart" id="rightHand" src="imgs/bracoD.png" alt="" />
+            <img class="hangmanPart" id="leftFoot" src="imgs/pernaE.png" alt="" />
+            <img class="hangmanPart" id="rightFoot" src="imgs/pernaD.png" alt="" />
+        </div>
+
+        <div id="chooseThemeModal" class="modal">
+          <header id="headerModal">
+            <h2>Escolher o Tema</h2>
+            <span class="closeModal" onclick="closeModal(1)">✕</span>
+          </header>
+          <div id="themeButtons">
+            <button class="theme" id="programing">💻 Programação</button>
+            <button class="theme" id="animals" >🐶 Animais</button>
+            <button class="theme" id="countries" >🌎 Países</button>
+            <button class="theme" id="fruits" >🍓 Frutas</button>
+            <button class="theme" id="sports">⚽ Esportes</button>
+            <button class="theme" id="objects" >🪑 Objetos</button>
+          </div>
+        </div>
+
+        <div id="finalGameModal" class="modal">
+          <header id="headerModal">
+            <h2 id="finalGame">Perdeu!</h2>
+            <span class="closeModal" onclick="closeModal(2)">✕</span>
+          </header>
+          <div id="correctWordContainer">
+            <h3>A Palavra Era:</h3>
+            <div id="correctWord"></div>
+          </div>
+          <div id="buttonPlayAgain">
+            <button  onclick="start()">Jogar Denovo</button>
+          </div>
+        </div>
+
+        <div id="mask"></div>
+       
+      </section>
+    </main>
+  </body>
+</html>
