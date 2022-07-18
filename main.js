@@ -84,7 +84,7 @@ function game(letter){
                 // document.getElementById('typedLetters').innerHTML += letter.toUpperCase()
                 misses++
                 if(misses < 6){
-                    drawings[misses].style.visibility = 'visible'
+                    drawings[misses].style.opacity = 1
                 } else {
                     document.getElementById('head').src = 'imgs/cabeca2.png'
                     // document.getElementById('dvmsg').innerHTML = 'PERDEU'
@@ -161,7 +161,7 @@ function start(){
     drawings[5] = document.getElementById('rightFoot')
     document.getElementById('head').src = 'imgs/cabeca1.png'
     for(let i=1; i<6; i++){
-        drawings[i].style.visibility = 'hidden'
+        drawings[i].style.opacity = 0
     } 
 
     const buttonsKey = document.querySelectorAll('.key')
