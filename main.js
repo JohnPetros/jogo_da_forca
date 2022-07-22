@@ -1,7 +1,3 @@
-// let keys = document.querySelectorAll("div.key")
-// console.log(keys)
-
-
 let words = ['javascript', 'html', 'css', 'algoritmo', 'logica', 'tecnologia', 'php', 'java', 'python', 'array', 'django', 'flask', 'ruby', 'reactjs', 'jquery', 'mobile', 'lavarel', 'nodejs', 'reactnative', 'linguagem', 'spring', 'bootsrap', 'informatica', 'arduino','flutter', 'desktop', 'web', 'devops', 'desenvolvedor', 'software']
 
 function changeTheme(event){
