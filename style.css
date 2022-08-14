@@ -1,11 +1,7 @@
 :root {
-
     --header: rgb(90, 87, 156);
     --button: rgb(51, 46, 188);
     --button-hover: rgb(75, 75, 229);
-
-
-
     font-size: 62.5%;
 }
 
@@ -99,6 +95,7 @@ header {
   outline: 0;
 }
 
+
 #controls {
     margin-top: 40px;
 
@@ -165,7 +162,7 @@ header {
     height: 258px;
 
     position: absolute;
-    top: 56%;
+    top: 410px;
     left: 71%;
 }
 
@@ -366,4 +363,30 @@ button#newWord{
 .modal.visibled ~ #mask {
     opacity: 0.5;
     pointer-events: initial;
+}
+
+@media (max-width: 1275px) {
+    #container {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .letter, .playLetter {
+        width: 40px;
+        font-size: 40px;
+    } 
+
+    #hangman {
+        top: 420px;
+        left: 55%;
+    }
+
+    #gallows {
+        width: 150px;
+    }
+
+    .hangmanPart {
+        width: 50px;
+    }
 }

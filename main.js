@@ -1,5 +1,7 @@
+// Setar as palavras que virão ser usadas no jogo por padrão
 let words = ['javascript', 'html', 'css', 'algoritmo', 'logica', 'tecnologia', 'php', 'java', 'python', 'array', 'django', 'flask', 'ruby', 'reactjs', 'jquery', 'mobile', 'lavarel', 'nodejs', 'reactnative', 'linguagem', 'spring', 'bootsrap', 'informatica', 'arduino','flutter', 'desktop', 'web', 'devops', 'desenvolvedor', 'software']
 
+// Mudar o tema de palavras de acordo com o id do botão clicado
 function changeTheme(event){
     let id = event.target.getAttribute('id')
     if(id == 'programing'){
@@ -34,13 +36,11 @@ function changeTheme(event){
         changeThemeTitle(6)
     }
 }
-
-// let words = ['javascript', 'curso', 'computador', 'transporte', 'livraria', 'tecnologia', 'controle', 'brasil', 'impressora', 'xicara', 'telefone', 'internet', 'camera', 'monitor', 'brinquedo', 'youtube', 'portaria', 'escola', 'carnaval', 'teclado', 'guitarra', 'bateria', 'chinelo', 'helicoptero','arduino', 'professor', 'mouse', 'linguagem']
+// Inicializar as variáveis globais
 let wordsQuantinity = words.length-1
 let position = Math.round(Math.random()*wordsQuantinity)
 let word = words[position]
 let wordLength = word.length
-let cxLetras = []
 let hits = 0
 let maxMisses = 7
 let misses = 0
@@ -51,10 +51,7 @@ let letterPlayer
 let caracterBoard
 let correctWord
 
-
-
 function defineWords(letters){
-    let obj
     for(let i = 0; i < 20; i++){
         obj = document.getElementById('letter' + i).value = ''
         obj = document.getElementById('letter' + i).style.display = 'none'
@@ -65,7 +62,7 @@ function defineWords(letters){
 }
 
 function game(letter){
-    let obj, letterPosition, search
+    let letterPosition, search
             success = false
             search = word.match(letter)
             while(search != null){
@@ -77,13 +74,11 @@ function game(letter){
                 success = true
             }
             if(!success){
-                // document.getElementById('typedLetters').innerHTML += letter.toUpperCase()
                 misses++
                 if(misses < 6){
                     drawings[misses].style.opacity = 1
                 } else {
                     document.getElementById('head').src = 'imgs/cabeca2.png'
-                    // document.getElementById('dvmsg').innerHTML = 'PERDEU'
                     let situation = document.querySelector('#finalGame')
                     situation.innerHTML = 'PERDEU!'
                     situation.style.color = '#e26c6c'
@@ -91,17 +86,18 @@ function game(letter){
                     document.querySelector('#correctWord').innerHTML = correctWord
                     openModal(2)
                     playing = false
+                    letterPlayer.disabled = true
                 }
             }
             changeButtonColor(letter.toUpperCase(), success)
             if(hits == wordLength){
-                // document.getElementById('dvsmg').innerHTML = 'GANHOU'
                 let situation = document.querySelector('#finalGame')
                 situation.innerHTML = 'VENCEU!'
                 situation.style.color = '#12c112'
                 document.querySelector('#correctWordContainer').style.display = 'none'
                 openModal(2)
                 playing = false
+                letterPlayer.disabled = true
             }
 }
 
@@ -128,7 +124,6 @@ function play(){
     }
 }
 
-
 function playBoard(event){
     let keyCode = event.target.dataset.key
     caracterBoard = String.fromCharCode(keyCode).toLocaleLowerCase()  
@@ -145,7 +140,7 @@ function start(){
     hits = 0
     misses = 0
     success = false
-    position = Math.round(Math.random()*wordsQuantinity)
+    position = Math.round(Math.random() * wordsQuantinity)
     word = words[position]
     correctWord = word
     wordLength = word.length
@@ -161,31 +156,15 @@ function start(){
     } 
 
     const buttonsKey = document.querySelectorAll('.key')
-    console.log(buttonsKey)
     buttonsKey.forEach((button) => button.classList.remove('success', 'notsuccess'))
 
     const themes = document.querySelectorAll('.theme')
-    console.log(themes)
     themes.forEach((theme) => {
         theme.addEventListener('click', changeTheme)
     })
 
-    closeModal(2)
-
-
-
-
-
-    // keys.forEach(function(key){
-    //     key.addEventListener('click', playBoard) 
-    // })
-    
+    closeModal(2)  
 }
-
-// function dica(){
-//     alert(word)
-//     letterPlayer.focus()
-// }
 
 function openModal(m){
     if(m == 1){
@@ -231,5 +210,8 @@ function changeThemeTitle(theme){
     }
 }
 
+window.addEventListener('keydown', event => {
+    if (event.key === 'Enter' && playing) play();
+})
 
 window.addEventListener('load', start)
